@@ -1,0 +1,58 @@
+version: 2
+
+models:
+  # Staging Model Tests
+  - name: stg_announcements
+    description: "Cleaned and standardized BSE announcements from raw data"
+    columns:
+      - name: id
+        description: "Unique announcement ID"
+        tests:
+          - unique          # No duplicates
+          - not_null        # Must have value
+      
+      - name: symbol
+        description: "Company stock symbol"
+        tests:
+          - not_null
+      
+      - name: broadcast_datetime
+        description: "When announcement was broadcast"
+        tests:
+          - not_null
+      
+      - name: category_group
+        description: "Simplified category"
+        tests:
+          - accepted_values:
+              values: ['Financial', 'Corporate Governance', 'Corporate', 'General', 'Other']
+  
+  # Analytics Model Tests
+  - name: daily_announcement_summary
+    description: "Daily aggregation of announcements by category"
+    columns:
+      - name: announcement_date
+        description: "Date of announcements"
+        tests:
+          - not_null
+      
+      - name: announcement_count
+        description: "Number of announcements"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+  
+  - name: company_activity
+    description: "Company-level announcement metrics"
+    columns:
+      - name: symbol
+        description: "Company stock symbol"
+        tests:
+          - unique
+          - not_null
+      
+      - name: total_announcements
+        description: "Total number of announcements"
+        tests:
+          - not_null

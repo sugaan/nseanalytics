@@ -1,0 +1,32 @@
+# dbt Project Configuration
+name: 'bse_analytics'
+version: '1.0.0'
+config-version: 2
+
+# Tell dbt which profile to use
+profile: 'bse_analytics'
+
+# Where to find things
+model-paths: ["models"]      # SQL models
+test-paths: ["tests"]        # Custom tests
+seed-paths: ["seeds"]        # CSV data
+macro-paths: ["macros"]      # Reusable SQL
+analysis-paths: ["analyses"] # Ad-hoc queries
+
+# Cleanup targets
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Model configurations
+models:
+  bse_analytics:
+    # Staging models = views (fast, don't store data)
+    staging:
+      +materialized: view
+      +schema: staging
+    
+    # Analytics models = tables (store data for fast queries)
+    analytics:
+      +materialized: table
+      +schema: analytics

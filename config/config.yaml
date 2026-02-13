@@ -1,0 +1,24 @@
+rss_feeds:
+  announcements: "https://www.bseindia.com/rss/announcements.xml"
+  financial_results: "https://www.bseindia.com/rss/financial_results.xml"
+  board_meetings: "https://www.bseindia.com/rss/board_meetings.xml"
+
+storage:
+  database_path: "data/announcements.db"
+  attachments_dir: "data/attachments"
+
+fetcher:
+  user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+  timeout: 30
+  max_retries: 3
+  retry_delay: 5
+
+scheduler:
+  enabled: true
+  interval_minutes: 30
+
+logging:
+  level: "INFO"
+  log_file: "logs/app.log"
+  rotation: "1 day"
+  retention: "30 days"

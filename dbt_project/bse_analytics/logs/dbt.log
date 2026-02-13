@@ -1,0 +1,274 @@
+[0m06:43:55.463120 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff86023450>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff862a66d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff86132510>]}
+
+
+============================== 06:43:55.467217 | 5f05910c-c3b2-471a-825f-c86ae3a7f852 ==============================
+[0m06:43:55.467217 [info ] [MainThread]: Running with dbt=1.5.0
+[0m06:43:55.467622 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/opt/airflow/dbt/profiles', 'fail_fast': 'False', 'warn_error': 'None', 'log_path': '/opt/airflow/dbt/logs', 'debug': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'static_parser': 'True', 'log_format': 'default', 'target_path': 'None', 'send_anonymous_usage_stats': 'True'}
+[0m06:43:55.467959 [info ] [MainThread]: dbt version: 1.5.0
+[0m06:43:55.468212 [info ] [MainThread]: python version: 3.11.8
+[0m06:43:55.468593 [info ] [MainThread]: python path: /usr/local/bin/python
+[0m06:43:55.468869 [info ] [MainThread]: os info: Linux-6.12.67-linuxkit-aarch64-with-glibc2.36
+[0m06:43:55.469166 [info ] [MainThread]: Using profiles.yml file at /opt/airflow/dbt/profiles/profiles.yml
+[0m06:43:55.469466 [info ] [MainThread]: Using dbt_project.yml file at /opt/airflow/dbt/dbt_project.yml
+[0m06:43:55.469718 [info ] [MainThread]: Configuration:
+[0m06:43:55.484681 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m06:43:55.498809 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m06:43:55.499386 [info ] [MainThread]: Required dependencies:
+[0m06:43:55.499723 [debug] [MainThread]: Executing "git --help"
+[0m06:43:55.503041 [info ] [MainThread]:  - git [[31mERROR[0m]
+
+[0m06:43:55.503521 [info ] [MainThread]: Connection:
+[0m06:43:55.503985 [info ] [MainThread]:   database: analytics
+[0m06:43:55.504844 [info ] [MainThread]:   schema: main
+[0m06:43:55.505201 [info ] [MainThread]:   schemas_and_paths: {'main': '/opt/airflow/data/announcements.db'}
+[0m06:43:55.505795 [info ] [MainThread]:   schema_directory: /opt/airflow/data
+[0m06:43:55.506358 [debug] [MainThread]: Acquiring new sqlite connection 'debug'
+[0m06:43:55.506657 [debug] [MainThread]: Using sqlite connection "debug"
+[0m06:43:55.506942 [debug] [MainThread]: On debug: select 1 as id
+[0m06:43:55.507131 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m06:43:55.508514 [debug] [MainThread]: SQL status: OK in 0.0 seconds
+[0m06:43:55.509135 [debug] [MainThread]: On debug: Close
+[0m06:43:55.509499 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m06:43:55.509828 [info ] [MainThread]: [31m1 check failed:[0m
+[0m06:43:55.510281 [info ] [MainThread]: Error from git --help: User does not have permissions for this command: "git"
+
+[0m06:43:55.510770 [debug] [MainThread]: Command `dbt debug` failed at 06:43:55.510706 after 0.05 seconds
+[0m06:43:55.511068 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m06:43:55.511413 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff86023450>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff86110bd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff86112190>]}
+[0m06:43:55.511654 [debug] [MainThread]: Flushing usage events
+[0m06:44:30.600348 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffffb5ca37d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffffb5863a10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffffb5b14910>]}
+
+
+============================== 06:44:30.603996 | ffb5f404-0153-479c-911e-f2149773cd6a ==============================
+[0m06:44:30.603996 [info ] [MainThread]: Running with dbt=1.5.0
+[0m06:44:30.604459 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/opt/airflow/dbt/profiles', 'fail_fast': 'False', 'version_check': 'True', 'log_path': '/opt/airflow/dbt/logs', 'warn_error': 'None', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'static_parser': 'True', 'log_format': 'default', 'target_path': 'None', 'send_anonymous_usage_stats': 'True'}
+[0m06:44:30.627054 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'ffb5f404-0153-479c-911e-f2149773cd6a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffffb59c09d0>]}
+[0m06:44:30.634169 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'ffb5f404-0153-479c-911e-f2149773cd6a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffffb6ebb3d0>]}
+[0m06:44:30.638898 [debug] [MainThread]: checksum: 4568eb639a77b8fcb3a1f4a07856f42b1ff63f1376652889143968e1dbdafbda, vars: {}, profile: , target: , version: 1.5.0
+[0m06:44:30.639691 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m06:44:30.640075 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'ffb5f404-0153-479c-911e-f2149773cd6a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffffb5ca3d50>]}
+[0m06:44:30.879256 [debug] [MainThread]: 1699: static parser successfully parsed staging/stg_announcements.sql
+[0m06:44:30.885308 [debug] [MainThread]: 1699: static parser successfully parsed analytics/company_activity.sql
+[0m06:44:30.887108 [debug] [MainThread]: 1699: static parser successfully parsed analytics/daily_announcement_summary.sql
+[0m06:44:30.919327 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'ffb5f404-0153-479c-911e-f2149773cd6a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffffb735c1d0>]}
+[0m06:44:30.924017 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'ffb5f404-0153-479c-911e-f2149773cd6a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffffb52f04d0>]}
+[0m06:44:30.924293 [info ] [MainThread]: Found 3 models, 3 tests, 0 snapshots, 0 analyses, 307 macros, 0 operations, 0 seed files, 0 sources, 0 exposures, 0 metrics, 0 groups
+[0m06:44:30.924536 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'ffb5f404-0153-479c-911e-f2149773cd6a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffffb55434d0>]}
+[0m06:44:30.925361 [info ] [MainThread]: 
+[0m06:44:30.925967 [debug] [MainThread]: Acquiring new sqlite connection 'master'
+[0m06:44:30.926717 [debug] [ThreadPool]: Acquiring new sqlite connection 'list_analytics'
+[0m06:44:30.932274 [debug] [ThreadPool]: Using sqlite connection "list_analytics"
+[0m06:44:30.932625 [debug] [ThreadPool]: On list_analytics: BEGIN
+[0m06:44:30.932873 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m06:44:30.933731 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m06:44:30.934018 [debug] [ThreadPool]: Using sqlite connection "list_analytics"
+[0m06:44:30.934248 [debug] [ThreadPool]: On list_analytics: /* {"app": "dbt", "dbt_version": "1.5.0", "profile_name": "bse_analytics", "target_name": "dev", "connection_name": "list_analytics"} */
+
+        pragma database_list
+    
+[0m06:44:30.934553 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m06:44:30.935392 [debug] [ThreadPool]: On list_analytics: ROLLBACK
+[0m06:44:30.935657 [debug] [ThreadPool]: On list_analytics: Close
+[0m06:44:30.936726 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_analytics, now list_analytics_main)
+[0m06:44:30.940893 [debug] [ThreadPool]: Using sqlite connection "list_analytics_main"
+[0m06:44:30.941207 [debug] [ThreadPool]: On list_analytics_main: BEGIN
+[0m06:44:30.941423 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m06:44:30.942112 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m06:44:30.942314 [debug] [ThreadPool]: Using sqlite connection "list_analytics_main"
+[0m06:44:30.942516 [debug] [ThreadPool]: On list_analytics_main: /* {"app": "dbt", "dbt_version": "1.5.0", "profile_name": "bse_analytics", "target_name": "dev", "connection_name": "list_analytics_main"} */
+
+        pragma database_list
+    
+[0m06:44:30.942741 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m06:44:30.943500 [debug] [ThreadPool]: Using sqlite connection "list_analytics_main"
+[0m06:44:30.943716 [debug] [ThreadPool]: On list_analytics_main: /* {"app": "dbt", "dbt_version": "1.5.0", "profile_name": "bse_analytics", "target_name": "dev", "connection_name": "list_analytics_main"} */
+
+            SELECT
+                'analytics' as database
+                ,name
+                ,'main' AS schema
+                ,type as data_type
+            FROM
+                main.sqlite_master
+            WHERE
+                name NOT LIKE 'sqlite_%'
+        
+[0m06:44:30.944205 [debug] [ThreadPool]: SQL status: OK in 0.0 seconds
+[0m06:44:30.944847 [debug] [ThreadPool]: On list_analytics_main: ROLLBACK
+[0m06:44:30.945038 [debug] [ThreadPool]: On list_analytics_main: Close
+[0m06:44:30.945964 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'ffb5f404-0153-479c-911e-f2149773cd6a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffffb58b7d50>]}
+[0m06:44:30.946259 [debug] [MainThread]: Using sqlite connection "master"
+[0m06:44:30.946438 [debug] [MainThread]: On master: BEGIN
+[0m06:44:30.946608 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m06:44:30.947269 [debug] [MainThread]: SQL status: OK in 0.0 seconds
+[0m06:44:30.947445 [debug] [MainThread]: On master: COMMIT
+[0m06:44:30.947596 [debug] [MainThread]: Using sqlite connection "master"
+[0m06:44:30.947741 [debug] [MainThread]: On master: COMMIT
+[0m06:44:30.947909 [debug] [MainThread]: SQL status: OK in 0.0 seconds
+[0m06:44:30.948075 [debug] [MainThread]: On master: Close
+[0m06:44:30.948444 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m06:44:30.948844 [info ] [MainThread]: 
+[0m06:44:30.959478 [debug] [Thread-1 (]: Began running node model.bse_analytics.stg_announcements
+[0m06:44:30.959968 [info ] [Thread-1 (]: 1 of 3 START sql view model main.stg_announcements ............................. [RUN]
+[0m06:44:30.960615 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_analytics_main, now model.bse_analytics.stg_announcements)
+[0m06:44:30.960902 [debug] [Thread-1 (]: Began compiling node model.bse_analytics.stg_announcements
+[0m06:44:30.962543 [debug] [Thread-1 (]: Writing injected SQL for node "model.bse_analytics.stg_announcements"
+[0m06:44:30.963997 [debug] [Thread-1 (]: Timing info for model.bse_analytics.stg_announcements (compile): 06:44:30.961069 => 06:44:30.963834
+[0m06:44:30.964262 [debug] [Thread-1 (]: Began executing node model.bse_analytics.stg_announcements
+[0m06:44:30.971707 [debug] [Thread-1 (]: Writing runtime sql for node "model.bse_analytics.stg_announcements"
+[0m06:44:30.973670 [debug] [Thread-1 (]: Using sqlite connection "model.bse_analytics.stg_announcements"
+[0m06:44:30.973979 [debug] [Thread-1 (]: On model.bse_analytics.stg_announcements: BEGIN
+[0m06:44:30.974154 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m06:44:30.974750 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m06:44:30.974966 [debug] [Thread-1 (]: Using sqlite connection "model.bse_analytics.stg_announcements"
+[0m06:44:30.975181 [debug] [Thread-1 (]: On model.bse_analytics.stg_announcements: /* {"app": "dbt", "dbt_version": "1.5.0", "profile_name": "bse_analytics", "target_name": "dev", "node_id": "model.bse_analytics.stg_announcements"} */
+
+    
+    create view main."stg_announcements" as
+    
+
+SELECT
+    id,
+    UPPER(TRIM(symbol)) as symbol,
+    TRIM(company_name) as company_name,
+    TRIM(subject) as subject,
+    TRIM(description) as description,
+    TRIM(category) as category,
+    broadcast_datetime,
+    created_at,
+    DATE(broadcast_datetime) as announcement_date,
+    strftime('%Y-%m', broadcast_datetime) as announcement_month,
+    strftime('%Y', broadcast_datetime) as announcement_year,
+    strftime('%H', broadcast_datetime) as hour_of_day,
+    CASE 
+        WHEN category LIKE '%Board Meeting%' THEN 'Corporate Governance'
+        WHEN category LIKE '%Financial%' OR category LIKE '%Results%' THEN 'Financial'
+        WHEN category LIKE '%Company Update%' THEN 'Corporate'
+        WHEN category LIKE '%Announcement%' THEN 'General'
+        ELSE 'Other'
+    END as category_group,
+    feed_source,
+    attachment_url,
+    CASE WHEN attachment_url IS NOT NULL THEN 1 ELSE 0 END as has_attachment
+FROM announcements
+WHERE broadcast_datetime IS NOT NULL;
+[0m06:44:30.976437 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m06:44:30.979418 [debug] [Thread-1 (]: On model.bse_analytics.stg_announcements: COMMIT
+[0m06:44:30.979645 [debug] [Thread-1 (]: Using sqlite connection "model.bse_analytics.stg_announcements"
+[0m06:44:30.979859 [debug] [Thread-1 (]: On model.bse_analytics.stg_announcements: COMMIT
+[0m06:44:30.980739 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m06:44:30.981295 [debug] [Thread-1 (]: Timing info for model.bse_analytics.stg_announcements (execute): 06:44:30.964450 => 06:44:30.981200
+[0m06:44:30.981566 [debug] [Thread-1 (]: On model.bse_analytics.stg_announcements: Close
+[0m06:44:30.982086 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'ffb5f404-0153-479c-911e-f2149773cd6a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffffb52b6410>]}
+[0m06:44:30.982448 [info ] [Thread-1 (]: 1 of 3 OK created sql view model main.stg_announcements ........................ [[32mOK[0m in 0.02s]
+[0m06:44:30.982835 [debug] [Thread-1 (]: Finished running node model.bse_analytics.stg_announcements
+[0m06:44:30.983415 [debug] [Thread-1 (]: Began running node model.bse_analytics.company_activity
+[0m06:44:30.983647 [info ] [Thread-1 (]: 2 of 3 START sql table model main.company_activity ............................. [RUN]
+[0m06:44:30.984062 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.bse_analytics.stg_announcements, now model.bse_analytics.company_activity)
+[0m06:44:30.984273 [debug] [Thread-1 (]: Began compiling node model.bse_analytics.company_activity
+[0m06:44:30.986738 [debug] [Thread-1 (]: Writing injected SQL for node "model.bse_analytics.company_activity"
+[0m06:44:30.987673 [debug] [Thread-1 (]: Timing info for model.bse_analytics.company_activity (compile): 06:44:30.984419 => 06:44:30.987563
+[0m06:44:30.987877 [debug] [Thread-1 (]: Began executing node model.bse_analytics.company_activity
+[0m06:44:30.995020 [debug] [Thread-1 (]: Writing runtime sql for node "model.bse_analytics.company_activity"
+[0m06:44:30.996200 [debug] [Thread-1 (]: Using sqlite connection "model.bse_analytics.company_activity"
+[0m06:44:30.996434 [debug] [Thread-1 (]: On model.bse_analytics.company_activity: BEGIN
+[0m06:44:30.996654 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m06:44:30.997776 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m06:44:30.998082 [debug] [Thread-1 (]: Using sqlite connection "model.bse_analytics.company_activity"
+[0m06:44:30.998348 [debug] [Thread-1 (]: On model.bse_analytics.company_activity: /* {"app": "dbt", "dbt_version": "1.5.0", "profile_name": "bse_analytics", "target_name": "dev", "node_id": "model.bse_analytics.company_activity"} */
+
+  
+    
+    
+    create  table main."company_activity"
+    as
+        
+
+SELECT
+    symbol,
+    MAX(company_name) as company_name,
+    COUNT(*) as total_announcements,
+    COUNT(DISTINCT category_group) as category_types,
+    MAX(broadcast_datetime) as last_announcement,
+    MIN(broadcast_datetime) as first_announcement
+FROM main."stg_announcements"
+GROUP BY symbol
+HAVING COUNT(*) >= 1
+ORDER BY total_announcements DESC
+
+  
+[0m06:44:31.005478 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m06:44:31.006453 [debug] [Thread-1 (]: On model.bse_analytics.company_activity: COMMIT
+[0m06:44:31.006738 [debug] [Thread-1 (]: Using sqlite connection "model.bse_analytics.company_activity"
+[0m06:44:31.006915 [debug] [Thread-1 (]: On model.bse_analytics.company_activity: COMMIT
+[0m06:44:31.008695 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m06:44:31.009161 [debug] [Thread-1 (]: Timing info for model.bse_analytics.company_activity (execute): 06:44:30.988034 => 06:44:31.009076
+[0m06:44:31.009376 [debug] [Thread-1 (]: On model.bse_analytics.company_activity: Close
+[0m06:44:31.009913 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'ffb5f404-0153-479c-911e-f2149773cd6a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffffb5300610>]}
+[0m06:44:31.010404 [info ] [Thread-1 (]: 2 of 3 OK created sql table model main.company_activity ........................ [[32mOK[0m in 0.03s]
+[0m06:44:31.010904 [debug] [Thread-1 (]: Finished running node model.bse_analytics.company_activity
+[0m06:44:31.011356 [debug] [Thread-1 (]: Began running node model.bse_analytics.daily_announcement_summary
+[0m06:44:31.011778 [info ] [Thread-1 (]: 3 of 3 START sql table model main.daily_announcement_summary ................... [RUN]
+[0m06:44:31.012317 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.bse_analytics.company_activity, now model.bse_analytics.daily_announcement_summary)
+[0m06:44:31.012589 [debug] [Thread-1 (]: Began compiling node model.bse_analytics.daily_announcement_summary
+[0m06:44:31.014393 [debug] [Thread-1 (]: Writing injected SQL for node "model.bse_analytics.daily_announcement_summary"
+[0m06:44:31.015225 [debug] [Thread-1 (]: Timing info for model.bse_analytics.daily_announcement_summary (compile): 06:44:31.012766 => 06:44:31.015074
+[0m06:44:31.015438 [debug] [Thread-1 (]: Began executing node model.bse_analytics.daily_announcement_summary
+[0m06:44:31.017891 [debug] [Thread-1 (]: Writing runtime sql for node "model.bse_analytics.daily_announcement_summary"
+[0m06:44:31.018778 [debug] [Thread-1 (]: Using sqlite connection "model.bse_analytics.daily_announcement_summary"
+[0m06:44:31.019023 [debug] [Thread-1 (]: On model.bse_analytics.daily_announcement_summary: BEGIN
+[0m06:44:31.019195 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m06:44:31.019890 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m06:44:31.020233 [debug] [Thread-1 (]: Using sqlite connection "model.bse_analytics.daily_announcement_summary"
+[0m06:44:31.020506 [debug] [Thread-1 (]: On model.bse_analytics.daily_announcement_summary: /* {"app": "dbt", "dbt_version": "1.5.0", "profile_name": "bse_analytics", "target_name": "dev", "node_id": "model.bse_analytics.daily_announcement_summary"} */
+
+  
+    
+    
+    create  table main."daily_announcement_summary"
+    as
+        
+
+SELECT
+    announcement_date,
+    category_group,
+    COUNT(*) as announcement_count,
+    COUNT(DISTINCT symbol) as unique_companies,
+    COUNT(CASE WHEN has_attachment = 1 THEN 1 END) as with_attachments
+FROM main."stg_announcements"
+GROUP BY announcement_date, category_group
+ORDER BY announcement_date DESC
+
+  
+[0m06:44:31.026439 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m06:44:31.027661 [debug] [Thread-1 (]: On model.bse_analytics.daily_announcement_summary: COMMIT
+[0m06:44:31.028009 [debug] [Thread-1 (]: Using sqlite connection "model.bse_analytics.daily_announcement_summary"
+[0m06:44:31.028218 [debug] [Thread-1 (]: On model.bse_analytics.daily_announcement_summary: COMMIT
+[0m06:44:31.029093 [debug] [Thread-1 (]: SQL status: OK in 0.0 seconds
+[0m06:44:31.029699 [debug] [Thread-1 (]: Timing info for model.bse_analytics.daily_announcement_summary (execute): 06:44:31.015579 => 06:44:31.029603
+[0m06:44:31.029960 [debug] [Thread-1 (]: On model.bse_analytics.daily_announcement_summary: Close
+[0m06:44:31.030480 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'ffb5f404-0153-479c-911e-f2149773cd6a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffffb4158c90>]}
+[0m06:44:31.030834 [info ] [Thread-1 (]: 3 of 3 OK created sql table model main.daily_announcement_summary .............. [[32mOK[0m in 0.02s]
+[0m06:44:31.031195 [debug] [Thread-1 (]: Finished running node model.bse_analytics.daily_announcement_summary
+[0m06:44:31.032327 [debug] [MainThread]: Using sqlite connection "master"
+[0m06:44:31.032547 [debug] [MainThread]: On master: BEGIN
+[0m06:44:31.032749 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m06:44:31.033361 [debug] [MainThread]: SQL status: OK in 0.0 seconds
+[0m06:44:31.033537 [debug] [MainThread]: On master: COMMIT
+[0m06:44:31.033695 [debug] [MainThread]: Using sqlite connection "master"
+[0m06:44:31.033837 [debug] [MainThread]: On master: COMMIT
+[0m06:44:31.033983 [debug] [MainThread]: SQL status: OK in 0.0 seconds
+[0m06:44:31.034170 [debug] [MainThread]: On master: Close
+[0m06:44:31.034509 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m06:44:31.034662 [debug] [MainThread]: Connection 'model.bse_analytics.daily_announcement_summary' was properly closed.
+[0m06:44:31.034843 [info ] [MainThread]: 
+[0m06:44:31.035143 [info ] [MainThread]: Finished running 1 view model, 2 table models in 0 hours 0 minutes and 0.11 seconds (0.11s).
+[0m06:44:31.035708 [debug] [MainThread]: Command end result
+[0m06:44:31.040205 [info ] [MainThread]: 
+[0m06:44:31.040622 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m06:44:31.041038 [info ] [MainThread]: 
+[0m06:44:31.041389 [info ] [MainThread]: Done. PASS=3 WARN=0 ERROR=0 SKIP=0 TOTAL=3
+[0m06:44:31.042092 [debug] [MainThread]: Command `dbt run` succeeded at 06:44:31.042005 after 0.45 seconds
+[0m06:44:31.042416 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffffb5ca36d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffffba5bc250>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffffba486010>]}
+[0m06:44:31.042773 [debug] [MainThread]: Flushing usage events

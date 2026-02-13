@@ -1,0 +1,16 @@
+[2026-02-12T12:27:51.430+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: bse_announcements_pipeline.process_announcements manual__2026-02-12T12:27:45+00:00 [queued]>
+[2026-02-12T12:27:51.435+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: bse_announcements_pipeline.process_announcements manual__2026-02-12T12:27:45+00:00 [queued]>
+[2026-02-12T12:27:51.436+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-02-12T12:27:51.442+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): process_announcements> on 2026-02-12 12:27:45+00:00
+[2026-02-12T12:27:51.445+0000] {standard_task_runner.py:60} INFO - Started process 2471 to run task
+[2026-02-12T12:27:51.447+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'bse_announcements_pipeline', 'process_announcements', 'manual__2026-02-12T12:27:45+00:00', '--job-id', '167', '--raw', '--subdir', 'DAGS_FOLDER/bse_announcements_dag.py', '--cfg-path', '/tmp/tmpuyerld5p']
+[2026-02-12T12:27:51.449+0000] {standard_task_runner.py:88} INFO - Job 167: Subtask process_announcements
+[2026-02-12T12:27:51.467+0000] {task_command.py:423} INFO - Running <TaskInstance: bse_announcements_pipeline.process_announcements manual__2026-02-12T12:27:45+00:00 [running]> on host 717813d532d8
+[2026-02-12T12:27:51.490+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='bse_announcements_pipeline' AIRFLOW_CTX_TASK_ID='process_announcements' AIRFLOW_CTX_EXECUTION_DATE='2026-02-12T12:27:45+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-12T12:27:45+00:00'
+[2026-02-12T12:27:51.496+0000] {logging_mixin.py:188} INFO - Processing 100 recent announcements
+[2026-02-12T12:27:51.497+0000] {logging_mixin.py:188} INFO - Categories: {'Board Meeting': 25, 'Company Update': 44, 'Result': 24, 'Insider Trading / SAST': 1, 'AGM/EGM': 2, 'Others': 4}
+[2026-02-12T12:27:51.497+0000] {logging_mixin.py:188} INFO - Top 10 companies: [('523209', 3), ('533181', 3), ('521244', 2), ('533293', 2), ('544301', 2), ('531310', 2), ('544134', 2), ('501423', 2), ('540937', 2), ('542727', 2)]
+[2026-02-12T12:27:51.497+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-02-12T12:27:51.499+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=bse_announcements_pipeline, task_id=process_announcements, execution_date=20260212T122745, start_date=20260212T122751, end_date=20260212T122751
+[2026-02-12T12:27:51.544+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-02-12T12:27:51.551+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

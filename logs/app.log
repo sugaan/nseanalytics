@@ -1,0 +1,99 @@
+2026-02-11 19:35:07 | INFO     | src.storage:__init__ - Database initialized at data/announcements.db
+2026-02-11 19:35:07 | INFO     | __main__:main - Running one-time fetch
+2026-02-11 19:35:07 | INFO     | src.orchestrator:fetch_and_store - Starting fetch and store operation
+2026-02-11 19:35:07 | INFO     | src.fetcher:fetch_feed - Fetching feed: announcements from https://nsearchives.nseindia.com/content/corporate/corp_announcements.xml
+2026-02-11 19:35:07 | ERROR    | src.fetcher:fetch_feed - Error fetching feed announcements: 404 Client Error: Not Found for url: https://nsearchives.nseindia.com/content/corporate/corp_announcements.xml
+2026-02-11 19:35:08 | INFO     | src.fetcher:fetch_feed - Fetching feed: financial_results from https://nsearchives.nseindia.com/content/equities/eq_financial.xml
+2026-02-11 19:35:08 | ERROR    | src.fetcher:fetch_feed - Error fetching feed financial_results: 404 Client Error: Not Found for url: https://nsearchives.nseindia.com/content/equities/eq_financial.xml
+2026-02-11 19:35:09 | INFO     | src.fetcher:fetch_feed - Fetching feed: board_meetings from https://nsearchives.nseindia.com/content/equities/eq_boardmeetings.xml
+2026-02-11 19:35:09 | ERROR    | src.fetcher:fetch_feed - Error fetching feed board_meetings: 404 Client Error: Not Found for url: https://nsearchives.nseindia.com/content/equities/eq_boardmeetings.xml
+2026-02-11 19:35:10 | INFO     | src.orchestrator:fetch_and_store - Fetch complete: {'total_fetched': 0, 'total_new': 0, 'feeds_processed': 0, 'feeds_failed': 3}
+2026-02-11 19:35:10 | INFO     | __main__:main - Results: {'total_fetched': 0, 'total_new': 0, 'feeds_processed': 0, 'feeds_failed': 3}
+2026-02-11 19:36:47 | INFO     | src.storage:__init__ - Database initialized at data/announcements.db
+2026-02-11 19:36:47 | INFO     | __main__:main - Running one-time fetch
+2026-02-11 19:36:47 | INFO     | src.orchestrator:fetch_and_store - Starting fetch and store operation
+2026-02-11 19:36:47 | INFO     | src.fetcher:fetch_feed - Fetching feed: announcements from https://nsearchives.nseindia.com/content/RSS/ANNOUNCEMENTS_EQUITY.xml
+2026-02-11 19:36:47 | ERROR    | src.fetcher:fetch_feed - Error fetching feed announcements: 404 Client Error: Not Found for url: https://nsearchives.nseindia.com/content/RSS/ANNOUNCEMENTS_EQUITY.xml
+2026-02-11 19:36:48 | INFO     | src.fetcher:fetch_feed - Fetching feed: financial_results from https://nsearchives.nseindia.com/content/RSS/FINANCIAL_RESULTS.xml
+2026-02-11 19:36:48 | ERROR    | src.fetcher:fetch_feed - Error fetching feed financial_results: 404 Client Error: Not Found for url: https://nsearchives.nseindia.com/content/RSS/FINANCIAL_RESULTS.xml
+2026-02-11 19:36:49 | INFO     | src.fetcher:fetch_feed - Fetching feed: board_meetings from https://nsearchives.nseindia.com/content/RSS/BOARD_MEETINGS.xml
+2026-02-11 19:36:49 | ERROR    | src.fetcher:fetch_feed - Error fetching feed board_meetings: 404 Client Error: Not Found for url: https://nsearchives.nseindia.com/content/RSS/BOARD_MEETINGS.xml
+2026-02-11 19:36:50 | INFO     | src.orchestrator:fetch_and_store - Fetch complete: {'total_fetched': 0, 'total_new': 0, 'feeds_processed': 0, 'feeds_failed': 3}
+2026-02-11 19:36:50 | INFO     | __main__:main - Results: {'total_fetched': 0, 'total_new': 0, 'feeds_processed': 0, 'feeds_failed': 3}
+2026-02-11 19:37:43 | INFO     | src.storage:__init__ - Database initialized at data/announcements.db
+2026-02-11 19:37:43 | INFO     | __main__:main - Running one-time fetch
+2026-02-11 19:37:43 | INFO     | src.orchestrator:fetch_and_store - Starting fetch and store operation
+2026-02-11 19:37:43 | INFO     | src.fetcher:fetch_feed - Fetching feed: announcements from https://www.moneycontrol.com/rss/MCtopnews.xml
+2026-02-11 19:37:43 | INFO     | src.fetcher:fetch_feed - Successfully fetched 1 entries from announcements
+2026-02-11 19:37:44 | INFO     | src.fetcher:fetch_feed - Fetching feed: financial_results from https://www.moneycontrol.com/rss/result-announcement.xml
+2026-02-11 19:38:16 | ERROR    | src.fetcher:fetch_feed - Error fetching feed financial_results: HTTPSConnectionPool(host='www.moneycontrol.com', port=443): Max retries exceeded with url: /rss/result-announcement.xml (Caused by ResponseError('too many 503 error responses'))
+2026-02-11 19:38:17 | INFO     | src.fetcher:fetch_feed - Fetching feed: board_meetings from https://www.moneycontrol.com/rss/board-meetings.xml
+2026-02-11 19:38:48 | ERROR    | src.fetcher:fetch_feed - Error fetching feed board_meetings: HTTPSConnectionPool(host='www.moneycontrol.com', port=443): Max retries exceeded with url: /rss/board-meetings.xml (Caused by ResponseError('too many 503 error responses'))
+2026-02-11 19:38:49 | INFO     | src.parser:parse_feed - Parsed 1 announcements from announcements
+2026-02-11 19:38:49 | INFO     | src.storage:bulk_add_announcements - Bulk add complete: 1 new out of 1 total
+2026-02-11 19:38:49 | INFO     | src.orchestrator:fetch_and_store - Fetch complete: {'total_fetched': 1, 'total_new': 1, 'feeds_processed': 1, 'feeds_failed': 2}
+2026-02-11 19:38:49 | INFO     | __main__:main - Results: {'total_fetched': 1, 'total_new': 1, 'feeds_processed': 1, 'feeds_failed': 2}
+2026-02-11 20:16:42 | INFO     | src.storage:__init__ - Database initialized at data/announcements.db
+2026-02-11 20:16:42 | INFO     | __main__:main - Running one-time fetch
+2026-02-11 20:16:42 | INFO     | src.orchestrator:fetch_and_store - Starting fetch from bse
+2026-02-11 20:16:42 | INFO     | src.fetcher_bse:fetch_all_announcements - Fetching BSE announcements page 1
+2026-02-11 20:16:42 | ERROR    | src.fetcher_bse:fetch_announcements - Error fetching BSE announcements: BSE.announcements() got an unexpected keyword argument 'page'
+2026-02-11 20:16:42 | INFO     | src.fetcher_bse:fetch_all_announcements - Total BSE announcements fetched: 0
+2026-02-11 20:16:42 | INFO     | src.storage:bulk_add_announcements - Bulk add complete: 0 new out of 0 total
+2026-02-11 20:16:42 | INFO     | __main__:main - Results: {'total_fetched': 0, 'total_new': 0, 'feeds_processed': 1, 'feeds_failed': 0}
+2026-02-11 20:18:06 | INFO     | src.storage:__init__ - Database initialized at data/announcements.db
+2026-02-11 20:18:06 | INFO     | __main__:main - Running one-time fetch
+2026-02-11 20:18:06 | INFO     | src.orchestrator:fetch_and_store - Starting fetch from bse
+2026-02-11 20:18:06 | INFO     | src.fetcher_bse:fetch_all_announcements - Fetching BSE announcements page 1
+2026-02-11 20:18:06 | INFO     | src.fetcher_bse:fetch_announcements - Fetched 50 announcements from BSE page 1
+2026-02-11 20:18:06 | INFO     | src.fetcher_bse:fetch_all_announcements - Fetching BSE announcements page 2
+2026-02-11 20:18:07 | INFO     | src.fetcher_bse:fetch_announcements - Fetched 50 announcements from BSE page 2
+2026-02-11 20:18:07 | INFO     | src.fetcher_bse:fetch_all_announcements - Fetching BSE announcements page 3
+2026-02-11 20:18:08 | INFO     | src.fetcher_bse:fetch_announcements - Fetched 50 announcements from BSE page 3
+2026-02-11 20:18:08 | INFO     | src.fetcher_bse:fetch_all_announcements - Fetching BSE announcements page 4
+2026-02-11 20:18:08 | INFO     | src.fetcher_bse:fetch_announcements - Fetched 50 announcements from BSE page 4
+2026-02-11 20:18:08 | INFO     | src.fetcher_bse:fetch_all_announcements - Fetching BSE announcements page 5
+2026-02-11 20:18:09 | INFO     | src.fetcher_bse:fetch_announcements - Fetched 50 announcements from BSE page 5
+2026-02-11 20:18:09 | INFO     | src.fetcher_bse:fetch_all_announcements - Total BSE announcements fetched: 250
+2026-02-11 20:18:09 | INFO     | src.storage:bulk_add_announcements - Bulk add complete: 250 new out of 250 total
+2026-02-11 20:18:09 | INFO     | __main__:main - Results: {'total_fetched': 250, 'total_new': 250, 'feeds_processed': 1, 'feeds_failed': 0}
+2026-02-11 20:19:07 | INFO     | src.storage:__init__ - Database initialized at data/announcements.db
+2026-02-11 20:23:48 | INFO     | src.storage:__init__ - Database initialized at data/announcements.db
+2026-02-11 20:27:00 | INFO     | src.storage:__init__ - Database initialized at data/announcements.db
+2026-02-11 20:27:00 | INFO     | __main__:main - Found 10 announcements
+2026-02-11 21:11:11 | INFO     | src.storage:__init__ - Database initialized at data/announcements.db
+2026-02-11 21:11:11 | INFO     | __main__:main - Running one-time fetch
+2026-02-11 21:11:11 | INFO     | src.orchestrator:fetch_and_store - Starting fetch from bse
+2026-02-11 21:11:11 | INFO     | src.fetcher_bse:fetch_all_announcements - Fetching BSE announcements page 1
+2026-02-11 21:11:11 | INFO     | src.fetcher_bse:fetch_announcements - Fetched 50 announcements from BSE page 1
+2026-02-11 21:11:11 | INFO     | src.fetcher_bse:fetch_all_announcements - Fetching BSE announcements page 2
+2026-02-11 21:11:12 | INFO     | src.fetcher_bse:fetch_announcements - Fetched 50 announcements from BSE page 2
+2026-02-11 21:11:12 | INFO     | src.fetcher_bse:fetch_all_announcements - Fetching BSE announcements page 3
+2026-02-11 21:11:12 | INFO     | src.fetcher_bse:fetch_announcements - Fetched 50 announcements from BSE page 3
+2026-02-11 21:11:12 | INFO     | src.fetcher_bse:fetch_all_announcements - Fetching BSE announcements page 4
+2026-02-11 21:11:13 | INFO     | src.fetcher_bse:fetch_announcements - Fetched 50 announcements from BSE page 4
+2026-02-11 21:11:13 | INFO     | src.fetcher_bse:fetch_all_announcements - Fetching BSE announcements page 5
+2026-02-11 21:11:13 | INFO     | src.fetcher_bse:fetch_announcements - Fetched 50 announcements from BSE page 5
+2026-02-11 21:11:13 | INFO     | src.fetcher_bse:fetch_all_announcements - Total BSE announcements fetched: 250
+2026-02-11 21:11:13 | INFO     | src.storage:bulk_add_announcements - Bulk add complete: 59 new out of 250 total
+2026-02-11 21:11:13 | INFO     | __main__:main - Results: {'total_fetched': 250, 'total_new': 59, 'feeds_processed': 1, 'feeds_failed': 0}
+2026-02-11 21:14:54 | INFO     | src.storage:__init__ - Database initialized at data/announcements.db
+2026-02-11 21:14:54 | INFO     | __main__:main - Starting scheduler mode
+2026-02-11 21:14:54 | INFO     | src.storage:__init__ - Database initialized at data/announcements.db
+2026-02-11 21:14:54 | INFO     | src.scheduler:start - Scheduler started with 30 minute interval
+2026-02-11 21:28:20 | INFO     | src.storage:__init__ - Database initialized at data/announcements.db
+2026-02-11 21:28:20 | INFO     | __main__:main - Running one-time fetch
+2026-02-11 21:28:20 | INFO     | src.orchestrator:fetch_and_store - Starting fetch from bse
+2026-02-11 21:28:20 | INFO     | src.fetcher_bse:fetch_all_announcements - Fetching BSE announcements page 1
+2026-02-11 21:28:21 | INFO     | src.fetcher_bse:fetch_announcements - Fetched 50 announcements from BSE page 1
+2026-02-11 21:28:21 | INFO     | src.fetcher_bse:fetch_all_announcements - Fetching BSE announcements page 2
+2026-02-11 21:28:21 | INFO     | src.fetcher_bse:fetch_announcements - Fetched 50 announcements from BSE page 2
+2026-02-11 21:28:21 | INFO     | src.fetcher_bse:fetch_all_announcements - Fetching BSE announcements page 3
+2026-02-11 21:28:22 | INFO     | src.fetcher_bse:fetch_announcements - Fetched 50 announcements from BSE page 3
+2026-02-11 21:28:22 | INFO     | src.fetcher_bse:fetch_all_announcements - Fetching BSE announcements page 4
+2026-02-11 21:28:22 | INFO     | src.fetcher_bse:fetch_announcements - Fetched 50 announcements from BSE page 4
+2026-02-11 21:28:22 | INFO     | src.fetcher_bse:fetch_all_announcements - Fetching BSE announcements page 5
+2026-02-11 21:28:23 | INFO     | src.fetcher_bse:fetch_announcements - Fetched 50 announcements from BSE page 5
+2026-02-11 21:28:23 | INFO     | src.fetcher_bse:fetch_all_announcements - Total BSE announcements fetched: 250
+2026-02-11 21:28:23 | INFO     | src.storage:bulk_add_announcements - Bulk add complete: 9 new out of 250 total
+2026-02-11 21:28:23 | INFO     | __main__:main - Results: {'total_fetched': 250, 'total_new': 9, 'feeds_processed': 1, 'feeds_failed': 0}

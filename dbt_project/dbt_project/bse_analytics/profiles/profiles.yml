@@ -1,0 +1,13 @@
+# This file tells dbt how to connect to your SQLite database
+
+bse_analytics:
+  target: dev
+  outputs:
+    dev:
+      type: sqlite                           # Database type
+      threads: 1                             # Parallel queries (SQLite = 1)
+      database: 'analytics'                  # Database name
+      schema: 'main'                         # SQLite schema (always 'main')
+      schemas_and_paths:
+        main: '/opt/airflow/data/announcements.db'  # Path inside Docker
+      schema_directory: '/opt/airflow/data'  # Where to create new DBs

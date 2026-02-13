@@ -1,0 +1,13 @@
+[0m06:16:09.652282 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff7fb40350>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff7c9f28d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff7c9f1f50>]}
+
+
+============================== 06:16:09.656363 | 82bc5022-5f71-4dcb-a93f-139179a2b686 ==============================
+[0m06:16:09.656363 [info ] [MainThread]: Running with dbt=1.11.4
+[0m06:16:09.656915 [debug] [MainThread]: running dbt with arguments {'profiles_dir': '/root/.dbt', 'version_check': 'True', 'empty': 'None', 'quiet': 'False', 'static_parser': 'True', 'log_cache_events': 'False', 'send_anonymous_usage_stats': 'True', 'use_colors': 'True', 'log_format': 'default', 'cache_selected_only': 'False', 'use_experimental_parser': 'False', 'printer_width': '80', 'no_print': 'None', 'debug': 'False', 'warn_error': 'None', 'write_json': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'introspect': 'True', 'log_path': 'logs', 'invocation_command': 'dbt init bse_analytics --skip-profile-setup', 'indirect_selection': 'eager', 'partial_parse': 'True', 'fail_fast': 'False'}
+[0m06:16:09.661986 [info ] [MainThread]: Creating dbt configuration folder at /root/.dbt
+[0m06:16:09.663200 [info ] [MainThread]: A project called bse_analytics already exists here.
+[0m06:16:09.664156 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 0.03912029, "process_in_blocks": "0", "process_kernel_time": 0.152045, "process_mem_max_rss": "104648", "process_out_blocks": "2090", "process_user_time": 0.811248}
+[0m06:16:09.664614 [debug] [MainThread]: Command `dbt init` succeeded at 06:16:09.664541 after 0.04 seconds
+[0m06:16:09.664898 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff7c9f1f50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff7cabc9d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff819b2790>]}
+[0m06:16:09.665157 [debug] [MainThread]: Flushing usage events
+[0m06:16:11.100255 [debug] [MainThread]: An error was encountered while trying to flush usage events

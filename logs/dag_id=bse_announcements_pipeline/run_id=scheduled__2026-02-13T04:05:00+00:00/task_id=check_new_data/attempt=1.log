@@ -1,0 +1,16 @@
+[2026-02-13T04:12:07.322+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: bse_announcements_pipeline.check_new_data scheduled__2026-02-13T04:05:00+00:00 [queued]>
+[2026-02-13T04:12:07.324+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: bse_announcements_pipeline.check_new_data scheduled__2026-02-13T04:05:00+00:00 [queued]>
+[2026-02-13T04:12:07.324+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-02-13T04:12:07.329+0000] {taskinstance.py:2191} INFO - Executing <Task(BranchPythonOperator): check_new_data> on 2026-02-13 04:05:00+00:00
+[2026-02-13T04:12:07.332+0000] {standard_task_runner.py:60} INFO - Started process 5285 to run task
+[2026-02-13T04:12:07.334+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'bse_announcements_pipeline', 'check_new_data', 'scheduled__2026-02-13T04:05:00+00:00', '--job-id', '357', '--raw', '--subdir', 'DAGS_FOLDER/bse_announcements_dag.py', '--cfg-path', '/tmp/tmpeo90oclb']
+[2026-02-13T04:12:07.335+0000] {standard_task_runner.py:88} INFO - Job 357: Subtask check_new_data
+[2026-02-13T04:12:07.352+0000] {task_command.py:423} INFO - Running <TaskInstance: bse_announcements_pipeline.check_new_data scheduled__2026-02-13T04:05:00+00:00 [running]> on host 717813d532d8
+[2026-02-13T04:12:07.378+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='bse_announcements_pipeline' AIRFLOW_CTX_TASK_ID='check_new_data' AIRFLOW_CTX_EXECUTION_DATE='2026-02-13T04:05:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-02-13T04:05:00+00:00'
+[2026-02-13T04:12:07.383+0000] {python.py:201} INFO - Done. Returned value was: generate_statistics
+[2026-02-13T04:12:07.383+0000] {branch.py:35} INFO - Branch into generate_statistics
+[2026-02-13T04:12:07.383+0000] {skipmixin.py:178} INFO - Following branch generate_statistics
+[2026-02-13T04:12:07.385+0000] {skipmixin.py:244} INFO - Skipping tasks [('process_announcements', -1)]
+[2026-02-13T04:12:07.401+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=bse_announcements_pipeline, task_id=check_new_data, execution_date=20260213T040500, start_date=20260213T041207, end_date=20260213T041207
+[2026-02-13T04:12:07.430+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-02-13T04:12:07.444+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

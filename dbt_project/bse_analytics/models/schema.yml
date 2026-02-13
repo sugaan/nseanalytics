@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: stg_announcements
+    description: "Cleaned BSE announcements"
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+      - name: symbol
+        tests:
+          - not_null
+          
+  - name: daily_announcement_summary
+    description: "Daily announcement metrics"
+    
+  - name: company_activity
+    description: "Company-level metrics"
