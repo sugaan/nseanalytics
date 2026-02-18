@@ -385,8 +385,8 @@ This project is licensed under the **MIT License**. See the `LICENSE` file for d
 ## 👤 Author
 
 - **Name**: Sugaan Kandhasamy  
-- **Portfolio**: [`https://sugaan.dev`](https://sugaan.dev)  
-- **LinkedIn**: [`https://www.linkedin.com/in/sugaan`](https://www.linkedin.com/in/sugaan)  
+- **Portfolio**: [`https://sugaan.github.io/`](https://sugaan.github.io/)  
+- **LinkedIn**: [`https://www.linkedin.com/in/sugaan-kandhasamy-5b549aa3/`](https://www.linkedin.com/in/sugaan-kandhasamy-5b549aa3/)  
 - **GitHub**: [`https://github.com/sugaan`](https://github.com/sugaan)
 
 ---
