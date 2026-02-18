@@ -6,439 +6,396 @@
 ![Docker](https://img.shields.io/badge/Docker-Ready-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-A production-ready data engineering pipeline that automates the extraction, transformation, and analysis of corporate announcements from the Bombay Stock Exchange (BSE) using modern data stack technologies.
+A production-ready ELT pipeline that automates the extraction, storage, and analysis of corporate announcements from the Bombay Stock Exchange (BSE) using a modern data stack.
+
+---
 
 ## 🎯 Project Overview
 
-This project implements a complete **ELT (Extract, Load, Transform)** pipeline that:
-- Scrapes real-time announcements from BSE India
-- Stores raw data in SQLite database
-- Transforms data using dbt into analytics-ready models
-- Orchestrates the entire workflow with Apache Airflow
-- Runs automated data quality tests
+This project implements an **ELT (Extract, Load, Transform)** workflow that:
 
-**Live Data:** Processes 50+ announcements every 15 minutes from BSE corporate filings.
+- **Extracts** announcements from the BSE website/API
+- **Loads** raw data into a local SQLite database
+- **Transforms** the data with **dbt** into analytics-ready models
+- **Orchestrates** the workflow using **Apache Airflow**
+
+The main Airflow DAG is:
+
+- **DAG ID**: `bse_announcements_pipeline`
+- **Default schedule (Docker setup)**: `*/5 * * * *` (every 5 minutes)
 
 ---
 
 ## 🏗️ Architecture
 
-┌─────────────────┐
-│ BSE API │ (Data Source)
-└────────┬────────┘
-│ Extract
-▼
-┌─────────────────┐
-│ Apache Airflow │ (Orchestration)
-│ - Scheduler │
-│ - DAG Runner │
-└────────┬────────┘
-│
-▼
-┌─────────────────┐
-│ SQLite (Raw) │ (Bronze Layer)
-│ announcements │
-└────────┬────────┘
-│ Transform
-▼
-┌─────────────────┐
-│ dbt Core │ (Transformation)
-│ - Staging │
-│ - Analytics │
-└────────┬────────┘
-│
-▼
-┌─────────────────────────────────────┐
-│ Analytics Tables (Silver/Gold) │
-│ - daily_announcement_summary │
-│ - company_activity │
-│ - hourly_patterns │
-└─────────────────────────────────────┘
+High-level architecture:
 
-text
+1. **BSE Source**
+   - HTTP client scrapes / fetches corporate announcements.
+
+2. **Orchestration (Airflow)**
+   - Schedules and runs the `bse_announcements_pipeline` DAG.
+   - Handles retries and branching based on whether new data was fetched.
+
+3. **Storage (SQLite)**
+   - Raw announcements stored in `data/announcements.db`.
+   - Accessed via SQLAlchemy models in `src/storage.py` and `src/models.py`.
+
+4. **Transformations (dbt)**
+   - dbt models in `dbt_project/bse_analytics` build:
+     - Staging model: `stg_announcements`
+     - Analytics models: `daily_announcement_summary`, `company_activity`, `hourly_patterns`
+
+5. **Analytics**
+   - Query the analytics tables using SQL or connect external BI tools to the SQLite database.
 
 ---
 
 ## 🛠️ Technology Stack
 
-| Component | Technology | Purpose |
-|-----------|------------|---------|
-| **Orchestration** | Apache Airflow 2.8.1 | Workflow scheduling & monitoring |
-| **Transformation** | dbt Core 1.5.0 | SQL-based data modeling |
-| **Database** | SQLite | Lightweight data storage |
-| **Language** | Python 3.11 | Data extraction & processing |
-| **Containerization** | Docker + Docker Compose | Portable deployment |
-| **Data Validation** | dbt tests | Automated quality checks |
-| **API Client** | Requests, BeautifulSoup | Web scraping |
-| **ORM** | SQLAlchemy | Database abstraction |
-| **Configuration** | Pydantic, PyYAML | Type-safe configs |
+| Component           | Technology            | Purpose                           |
+|---------------------|----------------------|-----------------------------------|
+| **Orchestration**   | Apache Airflow 2.8.1 | Workflow scheduling & monitoring  |
+| **Transformations** | dbt Core 1.5.0       | SQL-based data modeling           |
+| **Database**        | SQLite               | Lightweight local data storage    |
+| **Language**        | Python 3.11          | Scraping & pipeline logic         |
+| **Containerization**| Docker & Compose     | Local, reproducible environment   |
+| **ORM**             | SQLAlchemy           | Database abstraction              |
+| **Config**          | Pydantic, PyYAML     | Typed configuration management    |
 
 ---
 
 ## 📂 Project Structure
 
+```text
 nseanalytics/
-├── dags/ # Airflow DAG definitions
-│ ├── bse_announcements_dag.py # Simple scraper DAG
-│ └── bse_with_dbt.py # Full pipeline with dbt
+├── airflow/                    # Local Airflow metadata & runtime (airflow.db, logs, plugins)
+│   ├── dags/
+│   ├── logs/
+│   └── airflow.db
 │
-├── src/ # Source code
-│ ├── scraper.py # BSE API scraper
-│ ├── storage.py # Database operations
-│ ├── models.py # SQLAlchemy models
-│ ├── config.py # Configuration loader
-│ └── fetcher_bse.py # HTTP client
+├── dags/                       # DAGs mounted into the Dockerised Airflow
+│   └── bse_announcements_dag.py
 │
-├── dbt_project/ # dbt transformations
-│ └── bse_analytics/
-│ ├── models/
-│ │ ├── staging/
-│ │ │ └── stg_announcements.sql
-│ │ └── analytics/
-│ │ ├── daily_announcement_summary.sql
-│ │ ├── company_activity.sql
-│ │ └── hourly_patterns.sql
-│ ├── profiles/
-│ │ └── profiles.yml # dbt connection config
-│ ├── dbt_project.yml # dbt project config
-│ └── schema.yml # Tests & documentation
+├── src/                        # Python source code
+│   ├── scraper.py              # BSE scraper
+│   ├── storage.py              # DB access helpers
+│   ├── models.py               # SQLAlchemy models
+│   ├── orchestrator.py         # Orchestration of scrape/store steps
+│   ├── config.py               # Configuration loader
+│   └── fetcher_bse.py          # HTTP client for BSE
 │
-├── config/ # Application configs
-│ └── config.yaml # Feed sources, storage paths
+├── dbt_project/
+│   └── bse_analytics/
+│       ├── models/
+│       │   ├── staging/
+│       │   │   └── stg_announcements.sql
+│       │   └── analytics/
+│       │       ├── daily_announcement_summary.sql
+│       │       ├── company_activity.sql
+│       │       └── hourly_patterns.sql
+│       ├── profiles/           # dbt profile for SQLite
+│       │   └── profiles.yml
+│       ├── dbt_project.yml
+│       └── schema.yml
 │
-├── data/ # Data directory
-│ ├── announcements.db # SQLite database
-│ └── attachments/ # Downloaded PDFs
+├── config/
+│   └── config.yaml             # Data source & storage configuration
 │
-├── logs/ # Airflow logs
+├── data/
+│   ├── announcements.db        # SQLite database
+│   └── attachments/            # Downloaded attachments (if enabled)
 │
-├── docker-compose-simple.yml # Docker orchestration
-├── Dockerfile # Container definition
-├── requirements.txt # Python dependencies
-└── README.md # This file
-
-text
+├── logs/                       # Airflow/logging output
+├── docker-compose-simple.yml   # Single-container Airflow setup
+├── Dockerfile                  # Airflow image with project code
+├── requirements.txt            # Python dependencies
+├── pyproject.toml / setup.py   # Packaging / dev configuration
+└── README.md
+```
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start (Docker)
 
 ### Prerequisites
 
-- Docker Desktop installed
-- 4GB RAM available
-- Port 8080 free
+- Docker & Docker Compose installed
+- At least **4 GB** of free RAM
+- Port **8080** available
 
-### Installation & Setup
+### 1. Clone the repository
 
-1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/nseanalytics.git
+git clone https://github.com/<your-username>/nseanalytics.git
 cd nseanalytics
+```
 
-    Start the pipeline
+### 2. Start Airflow
 
-bash
+```bash
 docker-compose -f docker-compose-simple.yml up -d
+```
 
-    Wait for Airflow to initialize (60 seconds)
+Wait for Airflow to come up:
 
-bash
+```bash
 docker logs -f nse-airflow
-# Wait until you see "Airflow is ready"
+```
 
-    Access Airflow UI
+Once you see Airflow webserver and scheduler running, press `Ctrl+C` to stop tailing logs (the container stays up).
 
-text
-URL: http://localhost:8080
-Username: admin
-Password: admin
+### 3. Access Airflow UI
 
-    Enable the DAG
+- URL: `http://localhost:8080`
+- Username: `admin`
+- Password: `admin`
 
-    Go to DAGs page
+In the **DAGs** page:
 
-    Toggle on bse_with_dbt_pipeline
+1. Find the DAG **`bse_announcements_pipeline`**
+2. Toggle it **on** to unpause
+3. Optionally click the **play** button to trigger a manual run
 
-    Click ▶️ play button to trigger manually
+By default (Docker setup), this DAG is scheduled to run **every 5 minutes**.
 
-📊 Data Models
-Raw Layer (Bronze)
+---
 
-announcements - Raw data from BSE API
+## 📊 Data Models
 
-sql
-id, symbol, company_name, subject, description, 
-broadcast_datetime, category, attachment_url, 
-feed_source, created_at
+### Raw Layer (Bronze)
 
-Staging Layer (Silver)
+- **Table**: `announcements`
+- **Source**: Directly from BSE HTTP responses
 
-stg_announcements - Cleaned and standardized
+Example schema:
 
-    Uppercase symbols
+```sql
+id INTEGER PRIMARY KEY,
+symbol TEXT,
+company_name TEXT,
+subject TEXT,
+description TEXT,
+broadcast_datetime TEXT,
+category TEXT,
+attachment_url TEXT,
+feed_source TEXT,
+created_at TEXT
+```
 
-    Trimmed strings
+### Staging Layer (Silver) – dbt
 
-    Parsed date components
+- **Model**: `stg_announcements`
+- **Purpose**:
+  - Normalize and clean raw fields
+  - Parse and standardize datetimes
+  - Add helper flags (e.g. `has_attachment`)
 
-    Category grouping
+### Analytics Layer (Gold) – dbt
 
-    Has_attachment flag
+- **Model**: `daily_announcement_summary`
 
-Analytics Layer (Gold)
+  ```sql
+  announcement_date,
+  category_group,
+  announcement_count,
+  unique_companies,
+  with_attachments,
+  pct_with_attachments
+  ```
 
-daily_announcement_summary
+- **Model**: `company_activity`
 
-sql
-announcement_date, category_group, announcement_count,
-unique_companies, with_attachments, pct_with_attachments
+  ```sql
+  symbol,
+  company_name,
+  total_announcements,
+  category_types,
+  first_announcement,
+  last_announcement,
+  days_since_last_announcement
+  ```
 
-company_activity
+- **Model**: `hourly_patterns`
 
-sql
-symbol, company_name, total_announcements, category_types,
-first_announcement, last_announcement, days_since_last
+  ```sql
+  hour_of_day,
+  announcement_count,
+  unique_companies,
+  financial_count,
+  governance_count,
+  avg_per_day
+  ```
 
-hourly_patterns
+---
 
-sql
-hour_of_day, announcement_count, unique_companies,
-financial_count, governance_count, avg_per_day
+## 🧪 Data Quality (dbt Tests)
 
-🧪 Data Quality Tests
+dbt tests are defined in `dbt_project/bse_analytics/schema.yml` and cover:
 
-Automated tests run on every pipeline execution:
+- **Uniqueness** – primary keys are unique
+- **Non-null constraints** – critical columns are always populated
+- **Accepted values** – controlled vocabularies for categories
+- **Relationships** – referential integrity between models
 
-✅ Uniqueness Tests
+Run tests inside the Airflow container:
 
-    Primary keys are unique (no duplicates)
+```bash
+docker exec nse-airflow bash -c \
+  "cd /opt/airflow/dbt && dbt test --profiles-dir /opt/airflow/dbt/profiles"
+```
 
-✅ Non-null Tests
+---
 
-    Critical fields always have values
+## 💻 Local Development (Without Docker)
 
-✅ Accepted Values
+### 1. Create and activate a virtual environment
 
-    Categories match expected list
-
-✅ Relationships
-
-    Foreign key integrity
-
-Run tests manually:
-
-bash
-docker exec nse-airflow bash -c "cd /opt/airflow/dbt && dbt test --profiles-dir /opt/airflow/dbt/profiles"
-
-💻 Development Setup (Without Docker)
-Local Python Setup
-
-bash
-# Create virtual environment
+```bash
 python3.11 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
-# Install dependencies
+### 2. Install dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-# Run scraper
-python -c "
+### 3. Run a one-off scrape
+
+```python
 from src.scraper import BSEScraper
 from src.storage import Storage
+
 scraper = BSEScraper()
 storage = Storage()
+
 announcements = scraper.fetch_announcements()
 total, new = storage.bulk_add_announcements(announcements)
-print(f'Fetched {total} announcements ({new} new)')
-"
 
-# Run dbt
+print(f"Fetched {total} announcements ({new} new)")
+```
+
+### 4. Run dbt models locally
+
+```bash
 cd dbt_project/bse_analytics
-dbt run --profiles-dir ./profiles
+dbt run  --profiles-dir ./profiles
 dbt test --profiles-dir ./profiles
+```
 
-📈 Sample Queries
-Top 10 Most Active Companies
+---
 
-sql
-SELECT 
-    symbol, 
-    company_name, 
-    total_announcements,
-    days_since_last_announcement
+## 📈 Sample Analytics Queries
+
+### Top 10 most active companies
+
+```sql
+SELECT
+  symbol,
+  company_name,
+  total_announcements,
+  days_since_last_announcement
 FROM company_activity
 ORDER BY total_announcements DESC
 LIMIT 10;
+```
 
-Daily Announcement Trends (Last 30 Days)
+### Daily announcement trends (last 30 days)
 
-sql
-SELECT 
-    announcement_date,
-    category_group,
-    announcement_count,
-    unique_companies
+```sql
+SELECT
+  announcement_date,
+  category_group,
+  announcement_count,
+  unique_companies
 FROM daily_announcement_summary
 WHERE announcement_date >= date('now', '-30 days')
 ORDER BY announcement_date DESC;
+```
 
-Peak Announcement Hours
+### Peak announcement hours
 
-sql
-SELECT 
-    hour_of_day,
-    announcement_count,
-    avg_per_day
+```sql
+SELECT
+  hour_of_day,
+  announcement_count,
+  avg_per_day
 FROM hourly_patterns
 ORDER BY announcement_count DESC
 LIMIT 5;
+```
 
-🎯 Key Features
+---
 
-✨ Automated Data Pipeline
+## 🐛 Troubleshooting
 
-    Runs every 15 minutes
+- **Airflow container not starting**
 
-    Zero manual intervention
+  ```bash
+  docker logs nse-airflow
+  # Check for port conflicts or permission issues
+  ```
 
-    Self-healing on failures
+- **DAG not showing up in UI**
 
-📊 Data Transformation
+  ```bash
+  docker exec nse-airflow airflow dags list
+  # Confirm that bse_announcements_pipeline is listed
+  ```
 
-    dbt-powered SQL transformations
+- **dbt models failing**
 
-    Incremental model support
+  ```bash
+  docker exec nse-airflow bash -c \
+    "cd /opt/airflow/dbt && dbt debug --profiles-dir /opt/airflow/dbt/profiles"
+  ```
 
-    Version-controlled transformations
+- **SQLite 'database is locked' errors**
 
-✅ Data Quality
+  - SQLite has limited concurrency.
+  - Reduce Airflow parallelism in `docker-compose-simple.yml` if needed:
 
-    Automated testing framework
+    ```yaml
+    AIRFLOW__CORE__PARALLELISM: 1
+    AIRFLOW__CORE__DAG_CONCURRENCY: 1
+    ```
 
-    99.9% accuracy rate
+---
 
-    Built-in validation rules
+## 🤝 Contributing
 
-🔄 Orchestration
+Contributions are welcome:
 
-    Airflow DAG management
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/my-feature`
+3. Commit your changes: `git commit -m "Add my feature"`
+4. Push the branch: `git push origin feature/my-feature`
+5. Open a Pull Request
 
-    Task dependency handling
+---
 
-    Retry mechanisms
+## 📄 License
 
-🐳 Containerized
+This project is licensed under the **MIT License**. See the `LICENSE` file for details.
 
-    Docker-based deployment
+---
 
-    Portable across environments
+## 👤 Author
 
-    Easy scaling
+- **Name**: Sugaan Kandhasamy  
+- **Portfolio**: [`https://sugaan.dev`](https://sugaan.dev)  
+- **LinkedIn**: [`https://www.linkedin.com/in/sugaan`](https://www.linkedin.com/in/sugaan)  
+- **GitHub**: [`https://github.com/sugaan`](https://github.com/sugaan)
 
-📊 Project Metrics
-Metric	Value
-Total Announcements	10,000+
-Companies Tracked	369+
-Pipeline Frequency	Every 15 minutes
-Data Quality Score	99.9%
-Query Performance	<1 second
-Uptime	99.9%
-🔮 Roadmap
+---
 
-    Sentiment Analysis - NLP on announcement text
+## 🙏 Acknowledgments & References
 
-    Real-time Dashboard - Streamlit/Metabase integration
+- BSE India (publicly available data)
+- [Apache Airflow Documentation](https://airflow.apache.org/docs/)
+- [dbt Documentation](https://docs.getdbt.com/)
 
-    Alerting System - Email/Slack notifications
+If you find this project useful, consider starring the repository.
 
-    Stock Price Correlation - Integrate NSE price data
-
-    Cloud Migration - AWS/GCP deployment
-
-    Data Lakehouse - Apache Iceberg integration
-
-    API Layer - FastAPI REST endpoints
-
-    Machine Learning - Prediction models
-
-🐛 Troubleshooting
-Airflow not starting
-
-bash
-docker logs nse-airflow
-# Check for port conflicts or permission issues
-
-DAG not showing up
-
-bash
-# Check DAG syntax
-docker exec nse-airflow airflow dags list
-
-dbt models failing
-
-bash
-# Debug dbt connection
-docker exec nse-airflow bash -c "cd /opt/airflow/dbt && dbt debug --profiles-dir /opt/airflow/dbt/profiles"
-
-Database locked errors
-
-bash
-# SQLite doesn't support high concurrency
-# Reduce parallelism in docker-compose:
-# AIRFLOW__CORE__PARALLELISM=1
-
-🤝 Contributing
-
-Contributions are welcome! Please:
-
-    Fork the repository
-
-    Create feature branch (git checkout -b feature/AmazingFeature)
-
-    Commit changes (git commit -m 'Add AmazingFeature')
-
-    Push to branch (git push origin feature/AmazingFeature)
-
-    Open a Pull Request
-
-📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-👤 Author
-
-Sugaan Kandhasamy
-
-    🌐 Portfolio: sugaan.dev
-
-    💼 LinkedIn: linkedin.com/in/sugaan
-
-    📧 Email: sugaan@example.com
-
-    🐙 GitHub: @sugaan
-
-🙏 Acknowledgments
-
-    BSE India for providing public API
-
-    dbt Labs for excellent transformation framework
-
-    Apache Airflow community
-
-    Docker for containerization
-
-📚 References
-
-    Apache Airflow Documentation
-
-    dbt Documentation
-
-    BSE India
-
-⭐ If you found this project useful, please consider giving it a star!
-
-Built with ❤️ using modern data engineering best practices
-
-text
-
-**Save this as `README.md` in your project root!** 🎉
