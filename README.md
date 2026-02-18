@@ -18,6 +18,7 @@ This project implements an **ELT (Extract, Load, Transform)** workflow that:
 - **Loads** raw data into a local SQLite database
 - **Transforms** the data with **dbt** into analytics-ready models
 - **Orchestrates** the workflow using **Apache Airflow**
+- **Visualizes** analytics models using **Metabase** dashboards
 
 The main Airflow DAG is:
 
@@ -45,9 +46,13 @@ High-level architecture:
    - dbt models in `dbt_project/bse_analytics` build:
      - Staging model: `stg_announcements`
      - Analytics models: `daily_announcement_summary`, `company_activity`, `hourly_patterns`
-
 5. **Analytics**
    - Query the analytics tables using SQL or connect external BI tools to the SQLite database.
+
+6. **Visualization (Metabase)**
+   - Metabase runs as a separate service in Docker (`nse-metabase`).
+   - Connects read-only to the same SQLite database via the shared `./data` volume.
+   - Dashboards and questions are built directly on top of the dbt analytics models.
 
 ---
 
@@ -58,6 +63,7 @@ High-level architecture:
 | **Orchestration**   | Apache Airflow 2.8.1 | Workflow scheduling & monitoring  |
 | **Transformations** | dbt Core 1.5.0       | SQL-based data modeling           |
 | **Database**        | SQLite               | Lightweight local data storage    |
+| **BI / Visualization** | Metabase          | Dashboards & exploratory analysis |
 | **Language**        | Python 3.11          | Scraping & pipeline logic         |
 | **Containerization**| Docker & Compose     | Local, reproducible environment   |
 | **ORM**             | SQLAlchemy           | Database abstraction              |
@@ -158,6 +164,26 @@ In the **DAGs** page:
 3. Optionally click the **play** button to trigger a manual run
 
 By default (Docker setup), this DAG is scheduled to run **every 5 minutes**.
+
+---
+
+### 4. Access Metabase UI (Visualization Layer)
+
+- URL: `http://localhost:3000`
+
+On first launch:
+
+1. Complete the Metabase onboarding (admin user, basic settings).
+2. When asked to add a database, choose **SQLite**.
+3. Use the following settings:
+   - **Name**: `bse_analytics` (or any friendly name)
+   - **Database file**: `/data/announcements.db`
+4. Save and wait for Metabase to sync the schema.
+
+You can now:
+
+- Browse tables like `daily_announcement_summary`, `company_activity`, and `hourly_patterns`.
+- Build Metabase **questions** and **dashboards** on top of these models.
 
 ---
 
